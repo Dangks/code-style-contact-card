@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![pages-build-deployment](https://github.com/Dangks/code-style-contact-card/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Dangks/code-style-contact-card/actions/workflows/pages/pages-build-deployment)
+[![pages-build-deployment](https://github.com/Dangks/code-style-contact-card/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Dangks/code-style-contact-card/actions/workflows/pages/pages-build-deployment)  
 [English](README.md) | [中文](README_zh.md)
 
 </div>
