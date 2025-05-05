@@ -55,8 +55,10 @@ A web-based programmer specific contact card generator that can display contact 
 ### Project Structure
 ```
 code-style-contact-card/
+├── index.html          # Main HTML file
+├── README.md          # English documentation
+├── README_zh.md       # Chinese documentation
 └── src/
-    ├── index.html          # Main HTML file
     ├── css/
     │   └── style.css      # Styles
     └── js/

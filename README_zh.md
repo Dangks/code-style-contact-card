@@ -55,8 +55,10 @@
 ### 项目结构
 ```
 code-style-contact-card/
+├── index.html          # 主 HTML 文件
+├── README.md          # 英文文档
+├── README_zh.md       # 中文文档
 └── src/
-    ├── index.html          # 主 HTML 文件
     ├── css/
     │   └── style.css      # 样式文件
     └── js/
