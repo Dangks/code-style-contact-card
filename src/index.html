@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代码风名片生成器</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>名片生成器</h1>
+        <div class="content-wrapper">
+            <div class="preview-section">
+                <div class="preview-controls">
+                    <button type="button" id="zoomIn" class="zoom-btn" title="放大">
+                        <span>+</span>
+                    </button>
+                    <span id="zoomLevel">100%</span>
+                    <button type="button" id="zoomOut" class="zoom-btn" title="缩小">
+                        <span>-</span>
+                    </button>
+                </div>
+                <div id="preview" class="preview">
+                    <div class="preview-header">
+                        <div class="preview-title" id="previewTitle">名片.json</div>
+                    </div>
+                    <div class="preview-content">
+                        <div class="line-numbers" id="lineNumbers">
+                        </div>
+                        <pre class="code-content"><code id="cardContent"></code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <form id="cardForm">
+                    <div class="form-group">
+                        <label for="cardTitle">cardTitle:</label>
+                        <input type="text" id="cardTitle" value="个人名片" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" value="Dangks" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" value="软件工程师" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" value="+86-1234567890" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" value="dangks@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Link:</label>
+                        <input type="text" id="link" value="https://github.com/Dangks" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="format">Format:</label>
+                        <select id="format">
+                            <option value="json">JSON</option>
+                            <option value="xml">XML</option>
+                            <option value="yaml">YAML</option>
+                            <option value="ts">TypeScript</option>
+                            <option value="py">Python</option>
+                            <option value="java">Java</option>
+                            <option value="go">Go</option>
+                            <option value="rs">Rust</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="exportBtn" class="export-btn" title="导出为图片">
+                            Save as Image
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/html2canvas.min.js"></script>
+    <script src="js/formatters/jsonFormatter.js"></script>
+    <script src="js/formatters/xmlFormatter.js"></script>
+    <script src="js/formatters/yamlFormatter.js"></script>
+    <script src="js/formatters/tsFormatter.js"></script>
+    <script src="js/formatters/pyFormatter.js"></script>
+    <script src="js/formatters/javaFormatter.js"></script>
+    <script src="js/formatters/goFormatter.js"></script>
+    <script src="js/formatters/rustFormatter.js"></script>
+    <script src="js/cardGenerator.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/exportCard.js"></script>
+    <script src="js/zoomController.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new CardExporter();
+            new ZoomController();
+        });
+    </script>
+</body>
+</html>
