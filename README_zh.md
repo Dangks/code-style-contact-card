@@ -1,10 +1,21 @@
 # 代码风名片生成器
 
+<div align="center">
+
+[![pages-build-deployment](https://github.com/Dangks/code-style-contact-card/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Dangks/code-style-contact-card/actions/workflows/pages/pages-build-deployment)
 [English](README.md) | [中文](README_zh.md)
-![生成卡片预览](https://github.com/user-attachments/assets/7954edbd-0495-4ce1-b90e-c738e12296ba)
+
+</div>
 
 ### 描述
 一个基于网页的程序员专属名片生成器，可以将名片信息以各种编程语言格式展示，让你也能用代码生成独特的程序员风格名片。名片样式模仿流行的 IDE 代码显示效果，包含语法高亮。
+
+### 效果预览
+<img src="https://github.com/user-attachments/assets/7954edbd-0495-4ce1-b90e-c738e12296ba" alt="生成卡片预览" style="display: block; margin: 0 auto; max-width: 60%;" />
+
+### 在线体验
+[code-style-contact-card](https://dangks.github.io/code-style-contact-card/)
+
 ### 功能特点
 - 支持多种编程语言格式：
   - JSON
