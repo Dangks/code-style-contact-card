@@ -11,7 +11,9 @@
 A web-based programmer specific contact card generator that can display contact card information in various programming language formats, allowing you to generate unique programmer style contact cards using code. The card design mimics popular IDE interfaces with syntax highlighting.
 
 ### Preview
-<img src="https://github.com/user-attachments/assets/ce796f23-deeb-4831-b34d-72bad11fb794" alt="ContactCard" style="display: block; margin: 0 auto; max-width: 60%;" />
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/ce796f23-deeb-4831-b34d-72bad11fb794" alt="ContactCard" width="60%" />
+</div>  
 
 ### Example Site
 [code-style-contact-card](https://dangks.github.io/code-style-contact-card/)
