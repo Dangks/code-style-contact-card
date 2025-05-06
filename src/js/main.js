@@ -40,11 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
             updateLineNumbers(result);
 
             // 调试输出
-            console.log('Preview updated:', {
-                format,
-                data,
-                result
-            });
+            // console.log('Preview updated:', {
+            //     format,
+            //     data,
+            //     result
+            // });
         } catch (error) {
             console.error('更新预览时出错:', error);
         }

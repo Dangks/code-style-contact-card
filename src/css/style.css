@@ -4,27 +4,40 @@
     padding: 0;
 }
 
+/* 基础样式重置 */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    padding: 20px;
+    padding: 0; /* 移除body的padding */
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
 }
 
+/* 容器样式优化 */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 100%;
+    margin: 0;
+    padding: 5px 10px; /* 减小容器内边距 */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* 标题样式优化 */
 h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 5px 0; /* 减小标题margin */
+    font-size: 1.4rem;
 }
 
+/* 内容包装器样式优化 */
 .content-wrapper {
     display: flex;
-    gap: 20px;
-    min-height: calc(100vh - 100px);
+    gap: 10px; /* 减小间距 */
+    flex: 1;
+    min-height: 0;
+    padding: 5px 0;
 }
 
 /* 主题相关的 CSS 变量 */
@@ -37,7 +50,7 @@ h1 {
     --line-numbers-bg: #1e1e1e;
     --line-numbers-text: #858585;
     --title-bar-bg: #252526;
-    --preview-section-bg: #a8eeff;
+    --preview-section-bg: #c9f4fe;
     --editor-text-key: #9cdcfe;
     --editor-text-string: #ce9178;
     --editor-text-number: #b5cea8;
@@ -57,96 +70,108 @@ h1 {
     --line-numbers-bg: #f8f8f8;
     --line-numbers-text: #6e7781;    /* 行号颜色加深 */
     --title-bar-bg: #f3f3f3;
-    --preview-section-bg: #f0f0f0;
+    --preview-section-bg: #c9f4fe;
 }
 
+/* 预览区域样式优化 */
 .preview-section {
-    flex: 2;  /* 占据三分之二空间 */
+    flex: 1.4;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* 添加这行确保垂直居中 */
+    justify-content: center;
     background-color: var(--preview-section-bg);
-    padding: 20px;
+    padding: 10px; /* 减小内边距 */
     border-radius: 8px;
-    position: relative;
-    min-height: 400px; /* 确保最小高度 */
-    overflow: hidden;  /* 防止卡片超出容器 */
+    position: relative; /* 确保相对定位 */
+    overflow: hidden;
+    min-height: 0; /* 确保flex子项不会溢出 */
 }
 
+/* 预览控件容器样式 */
 .preview-controls {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 10;
+    top: 10px;
+    right: 10px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 5px;
-    background-color: #252526;
+    gap: 5px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px;
     border-radius: 4px;
+    z-index: 100; /* 确保在卡片上层 */
 }
 
+/* 缩放按钮样式 */
 .zoom-btn {
-    background-color: #3c3c3c;
-    color: #d4d4d4;
+    background: transparent;
+    color: #333;
     border: none;
-    border-radius: 3px;
     width: 24px;
     height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 3px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.2s;
+    padding: 0;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .zoom-btn:hover {
-    background-color: #4c4c4c;
+    background-color: #fff;
 }
 
-.zoom-btn:active {
-    background-color: #2c2c2c;
-}
-
+/* 缩放级别显示 */
 #zoomLevel {
-    color: #d4d4d4;
-    font-family: 'Consolas', 'Monaco', monospace;
     font-size: 12px;
-    min-width: 50px;
+    color: #fff;
+    font-family: 'Consolas', monospace;
+    min-width: 40px;
     text-align: center;
 }
 
+/* 表单区域样式优化 */
 .form-section {
-    flex: 1;  /* 占据三分之一空间 */
-    padding: 20px;
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    /* 移除 overflow: hidden */
 }
 
-.form-group {
+/* 表单网格布局 */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
     margin-bottom: 15px;
+}
+
+/* 表单组样式优化 */
+.form-group {
+    margin-bottom: 8px; /* 减小间距 */
 }
 
 .form-group:first-child {
     margin-top: 0;
 }
 
+/* 标签样式优化 */
 label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
 }
 
+/* 输入框样式优化 */
 input, select {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
+    padding: 6px 8px;
+    border: 1px solid #4CAF50;
     border-radius: 4px;
-}
-
-.form-group input[type="text"]#cardTitle {
-    font-weight: 500;
-    border-color: #4CAF50;
+    font-size: 0.9rem;
 }
 
 button {
@@ -162,12 +187,12 @@ button:hover {
     background-color: #45a049;
 }
 
-/* 卡片容器样式 */
+/* 预览卡片样式优化 */
 .preview {
     position: relative;
-    transform: scale(1.2); /* 移除 translateY，只保留缩放 */
+    transform: scale(1.1); /* 稍微减小缩放比例 */
     transition: transform 0.2s ease;
-    margin: auto;
+    margin: 0 auto; /* 居中但移除多余间距 */
     width: 85.60mm;  /* ISO 7810 ID-1 标准宽度 */
     height: 53.98mm; /* ISO 7810 ID-1 标准高度 */
     background-color: var(--editor-bg);
@@ -209,7 +234,7 @@ button:hover {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-/* 导出按钮样式 */
+/* 导出按钮样式优化 */
 .export-btn {
     background-color: #4CAF50;
     color: white;
@@ -219,7 +244,7 @@ button:hover {
     font-size: 14px;
     cursor: pointer;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 5px; /* 减小顶部间距 */
     transition: background-color 0.3s;
 }
 
@@ -314,30 +339,217 @@ code {
 }
 
 .comment {
-    color: var(--line-numbers-text);
+    color: var(--editor-text-key);
 }
 
-/* 响应式布局 */
-@media (max-width: 768px) {
-    .content-wrapper {
-        flex-direction: column;
-    }
-
-    .preview-section {
-        order: 2;
-    }
-
-    .form-section {
-        order: 1;
-    }
-
+/* 响应式布局优化 */
+@media (max-width: 1024px) {
     .container {
         padding: 10px;
     }
+    
+    .content-wrapper {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 页面整体布局调整 */
+    .content-wrapper {
+        flex-direction: column;
+        height: 100%;
+        gap: 5px;
+    }
+
+    /* 表单区域优化 */
+    .form-section {
+        flex: none;
+        height: 55vh;
+        overflow-y: auto;
+        padding: 10px;
+        margin-bottom: 0;
+        /* 移除之前的 padding-bottom */
+    }
+
+    /* 自定义滚动条样式 */
+    .form-section::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .form-section::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .form-section::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+    }
+
+    /* 表单网格布局优化 */
+    .form-grid {
+        gap: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 0;
+    }
+
+    /* 预览区域调整 */
+    .preview-section {
+        flex: none;
+        height: 45vh;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between; /* 改为两端对齐 */
+        gap: 10px;
+    }
+
+    /* 导出按钮样式调整 */
+    .export-btn {
+        position: static; /* 移除固定定位 */
+        width: 90%;
+        max-width: 300px;
+        height: 40px;
+        margin: 0 auto;
+        padding: 0;
+        border-radius: 4px;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 优化输入框样式 */
+    input, select {
+        padding: 10px;
+        font-size: 16px;
+        height: 40px; /* 确保触摸区域足够大 */
+    }
+
+    /* 标签优化 */
+    label {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    /* 预览卡片容器 */
+    .preview {
+        transform: scale(0.75);
+        margin-bottom: 0; /* 移除底部间距 */
+    }
+}
+
+/* 针对 iOS 设备的安全区域适配 */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    @media (max-width: 768px) {
+        .export-btn {
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+            height: auto;
+            min-height: 50px;
+        }
+        
+        .form-section {
+            padding-bottom: calc(60px + env(safe-area-inset-bottom));
+        }
+    }
+}
+
+@media (min-height: 700px) {
+    .preview {
+        transform: scale(1.2); /* 大屏幕时恢复原有缩放 */
+    }
+    
+    .preview-section {
+        padding: 15px;
+    }
+}
+
+@media (max-height: 600px) {
+    .preview {
+        transform: scale(1); /* 小屏幕时减小缩放 */
+    }
+    
+    h1 {
+        font-size: 1.2rem;
+        margin: 3px 0;
+    }
+    
+    .preview-section {
+        padding: 5px;
+    }
+}
+
+/* 针对较小屏幕的优化 */
+@media (max-width: 320px) {
+    .preview-section {
+        height: 40vh;
+    }
+
+    .form-section {
+        height: 60vh;
+    }
 
     .preview {
-        margin-top: 20px;
-        transform: scale(0.8);
-        transform-origin: center center;
+        transform: scale(0.65);
     }
+
+    /* 减小输入框高度 */
+    input, select {
+        height: 36px;
+        padding: 8px;
+    }
+}
+
+/* 增加横屏模式支持 */
+@media (max-width: 768px) and (orientation: landscape) {
+    .content-wrapper {
+        flex-direction: row;
+    }
+
+    .preview-section {
+        width: 45%;
+        height: 100vh;
+    }
+
+    .form-section {
+        width: 55%;
+        height: 100vh;
+    }
+
+    .preview {
+        transform: scale(0.6);
+    }
+
+    .export-btn {
+        margin-top: auto; /* 将按钮推到底部 */
+    }
+}
+
+/* 优化滚动条样式 */
+.form-section::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.form-section::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+}
+
+.form-section::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* 在浅色主题下的样式调整 */
+[data-theme="light"] .preview-controls {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .zoom-btn {
+    color: #666;
 }
