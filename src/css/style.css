@@ -27,13 +27,46 @@ h1 {
     min-height: calc(100vh - 100px);
 }
 
+/* 主题相关的 CSS 变量 */
+:root {
+    /* 深色主题（默认） */
+    --editor-bg: #1e1e1e;
+    --editor-header-bg: #252526;
+    --editor-border: #3c3c3c;
+    --editor-text: #d4d4d4;
+    --line-numbers-bg: #1e1e1e;
+    --line-numbers-text: #858585;
+    --title-bar-bg: #252526;
+    --preview-section-bg: #a8eeff;
+    --editor-text-key: #9cdcfe;
+    --editor-text-string: #ce9178;
+    --editor-text-number: #b5cea8;
+    --editor-text-symbol: #d4d4d4;
+}
+
+/* 浅色主题 */
+[data-theme="light"] {
+    --editor-bg: #ffffff;
+    --editor-header-bg: #f3f3f3;
+    --editor-border: #e0e0e0;
+    --editor-text: #24292e;          /* 更深的文字颜色 */
+    --editor-text-key: #22863a;      /* 键名颜色 */
+    --editor-text-string: #032f62;   /* 字符串颜色 */
+    --editor-text-number: #005cc5;   /* 数字颜色 */
+    --editor-text-symbol: #24292e;   /* 符号颜色 */
+    --line-numbers-bg: #f8f8f8;
+    --line-numbers-text: #6e7781;    /* 行号颜色加深 */
+    --title-bar-bg: #f3f3f3;
+    --preview-section-bg: #f0f0f0;
+}
+
 .preview-section {
     flex: 2;  /* 占据三分之二空间 */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center; /* 添加这行确保垂直居中 */
-    background-color: #a8eeff;
+    background-color: var(--preview-section-bg);
     padding: 20px;
     border-radius: 8px;
     position: relative;
@@ -137,7 +170,8 @@ button:hover {
     margin: auto;
     width: 85.60mm;  /* ISO 7810 ID-1 标准宽度 */
     height: 53.98mm; /* ISO 7810 ID-1 标准高度 */
-    background-color: #1e1e1e;
+    background-color: var(--editor-bg);
+    color: var(--editor-text);
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -145,23 +179,34 @@ button:hover {
     font-size: 12px;
     line-height: 1.6;
     transform-origin: center center;
+    font-weight: bold;
+}
+
+[data-theme="light"] .preview {
+    box-shadow: 
+        0 0 0 1px rgba(0, 0, 0, 0.05),
+        0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* 文件标题栏 */
 .preview-title {
-    background-color: #252526;
-    padding: 4px 8px;
-    color: #d4d4d4;
+    background-color: var(--editor-header-bg);
+    color: var(--editor-text);
     font-size: 12px;
-    border-bottom: 1px solid #3c3c3c;
+    border-bottom: 1px solid var(--editor-border);
     font-family: 'Consolas', 'Monaco', monospace;
 }
 
 /* 预览头部样式 */
 .preview-header {
     padding: 4px 8px;
-    background-color: #252526;
-    border-bottom: 1px solid #3c3c3c;
+    background-color: var(--editor-header-bg);
+    border-bottom: 1px solid var(--editor-border);
+}
+
+[data-theme="light"] .preview-header {
+    border-bottom: 1px solid var(--editor-border);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 /* 导出按钮样式 */
@@ -190,25 +235,25 @@ button:hover {
 .preview-content {
     display: flex;
     height: calc(100% - 25px);
+    background-color: var(--editor-bg);
 }
 
 /* 行号样式 */
 .line-numbers {
     padding: 8px 12px;
-    background-color: #1e1e1e;
-    color: #6e7681;
+    background-color: var(--line-numbers-bg);
+    color: var(--line-numbers-text);
     text-align: right;
     user-select: none;
-    border-right: 1px solid #3c3c3c;
+    border-right: 1px solid var(--editor-border);
     min-width: 40px;
     font-family: 'Consolas', 'Monaco', monospace;
     font-size: 12px;
     line-height: 1.6;
 }
 
-.line-number {
-    padding: 0 5px;
-    white-space: nowrap;
+[data-theme="light"] .line-numbers {
+    border-right: 1px solid var(--editor-border);
 }
 
 /* 代码内容区域 */
@@ -219,48 +264,57 @@ button:hover {
     white-space: pre;
 }
 
-/* 代码块样式 */
+/* 修改代码块样式，使用 CSS 变量 */
 code {
     display: block;
     font-family: 'Consolas', 'Monaco', monospace;
     font-size: 12px;
     line-height: 1.6;
-    color: #d4d4d4;
+    color: var(--editor-text); /* 改用 CSS 变量 */
 }
 
-pre {
-    background-color: transparent;
-    padding: 15px;
-    margin: 0;
-    font-family: 'Consolas', 'Monaco', monospace;
-    font-size: 14px;
-    line-height: 1.5;
+/* 修改语法高亮样式，确保在浅色主题下正确显示 */
+.code-content .key {
+    color: var(--editor-text-key);
+    font-weight: 500;
 }
 
-/* JSON 语法高亮 */
+.code-content .string {
+    color: var(--editor-text-string);
+}
+
+.code-content .number {
+    color: var(--editor-text-number);
+}
+
+.code-content .symbol {
+    color: var(--editor-text-symbol);
+}
+
+/* 修改 JSON 语法高亮，使用 CSS 变量 */
 .json-key {
-    color: #e6b422;
+    color: var(--editor-text-key);
 }
 
 .json-string {
-    color: #b5cea8;
+    color: var(--editor-text-string);
 }
 
 .json-punctuation {
-    color: #d4d4d4;
+    color: var(--editor-text-symbol);
 }
 
-/* 添加新的语法高亮样式 */
+/* 其他语法高亮也使用 CSS 变量 */
 .keyword {
-    color: #569cd6;
+    color: var(--editor-text-key);
 }
 
 .type {
-    color: #4ec9b0;
+    color: var(--editor-text-string);
 }
 
 .comment {
-    color: #6a9955;
+    color: var(--line-numbers-text);
 }
 
 /* 响应式布局 */

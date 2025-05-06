@@ -25,4 +25,12 @@ class JsonFormatter {
             return `<span class="${cls}">${match}</span>`;
         }).replace(/[{}\[\],]/g, match => `<span class="json-punctuation">${match}</span>`);
     }
+
+    formatJson(data) {
+        return JSON.stringify(data, null, 4)
+            .replace(/"(\w+)":/g, '<span class="key">"$1"</span>:')
+            .replace(/: "([^"]+)"/g, ': <span class="string">"$1"</span>')
+            .replace(/: (\d+)/g, ': <span class="number">$1</span>')
+            .replace(/[{}\[\],]/g, '<span class="symbol">$&</span>');
+    }
 }
